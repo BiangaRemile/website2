@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceuil</title>
+</head>
+<body>
+    <div style="width: 50%; margin: auto;">
+
+        <%- include('./composants/head') %>
+
+        <section>
+            <form action="/notes" method="post">
+                <input type="hidden" name="id" id="id">
+                <label for="titre">Titres</label><br>
+                <input type="text" id="titre" name="titre"><br>
+                <label for="description">Description</label><br>
+                <textarea name="description" id="description" cols="20" rows="5"></textarea><br>
+                <input type="submit" value="Enreistrer">
+                <hr>
+            </form>
+        </section>
+        <section>
+            <h2>Liste des notes</h2>
+            <ul>
+                <% result.forEach((corse) => { %>
+                    <li><%= corse.titre %> : <%= corse.description %></li>
+                    <input type="button" value="Supprimer" onclick="supprimer('<%= corse.id %>')">
+                    <input type="button" value="Modifier" onclick="modifier('<%= corse.id %>', '<%= corse.titre %>', '<%= corse.description %>')">
+                <% }) %>
+            </ul>
+        </section>
+    </div>
+    <script>
+        function modifier(id, titre, description) {
+            document.querySelector('#id').value = id
+            document.querySelector('#titre').value = titre
+            document.querySelector('#description').value = description
+        }
+
+        function supprimer(id) {
+            finalRoute = '/notes/' + id
+            fetch(finalRoute, {method : 'DELETE'})
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.path)
+            .catch((error) => console.log(error))
+        }
+    </script>
+
+</body>
+</html>
