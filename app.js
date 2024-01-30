@@ -4,11 +4,11 @@ const mysql = require('mysql')
 const myconnection = require('express-myconnection')
 
 const optionBd = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: 'bre1nmsiqqvxtymlhsrj-mysql.services.clever-cloud.com',
+    user: 'u6omhpenror3bsjj',
+    password: 'ZNQKxcCM8DF4exBGvr61',
     port: 3306,
-    database: 'note_nodejs2_db',
+    database: 'bre1nmsiqqvxtymlhsrj',
 }
 const app = express()
 
@@ -109,4 +109,4 @@ app.use(error404)
 
 
 // server listen
-app.listen(3001, '0.0.0.0', () => console.log("Server listen au port 3001"))
+app.listen(3001, () => console.log("Server listen au port 3001"))
